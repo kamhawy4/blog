@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\UsersController;
+use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/sss', function () {
+
+    return view('welcome');
+});
+
 Route::get('/', function () {
+
     return view('welcome');
 });
 Route::resource('users', UsersController::class);
