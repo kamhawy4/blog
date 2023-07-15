@@ -4,11 +4,11 @@ namespace App\Repository\Eloquent;
 
 use App\Models\User;
 use App\Repository\UserRepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
-
     /**
      * UserRepository constructor.
      *
@@ -19,11 +19,8 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         parent::__construct($model);
     }
 
-    /**
-     * @return Collection
-     */
-    public function all(): Collection
+    public function findByEmail($email)  : ?Model
     {
-        return $this->model->all();
+       return $this->model->where('email',$email)->first();
     }
 }

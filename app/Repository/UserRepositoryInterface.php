@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 interface UserRepositoryInterface
 {
-    public function all();
+    public function findByEmail($email): ?Model;
 }

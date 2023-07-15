@@ -23,7 +23,7 @@ class BaseRepository implements EloquentRepositoryInterface
         $this->model = $model;
     }
 
-    public function all()
+    public function index()
     {
         return $this->model->all();
     }
@@ -33,10 +33,9 @@ class BaseRepository implements EloquentRepositoryInterface
         return $this->model->find($id);
     }
 
-    public function create(Array $attributes) : Model
+    public function store(Array $attributes)
     {
-        $user = $this->model->insert($attributes);
-        return $user;
+        return $this->model->insert($attributes);
     }
 
     public function update(String $id, Array $attributes) : Model

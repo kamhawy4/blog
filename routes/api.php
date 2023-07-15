@@ -2,8 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\APi\Users\UsersController;
-use App\Http\Controllers\APi\Posts\PostsController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,19 +14,16 @@ use App\Http\Controllers\APi\Posts\PostsController;
 |
 */
 
-
-Route::group(['namespace' => 'APi', 'prefix' => 'v1/app/'], function () {
+Route::group(['namespace' => 'App\Http\Controllers\APi', 'prefix' => 'v1/app/'], function () {
 
         // posts
         Route::group(['namespace' => 'Posts'], function () {
-            Route::get('posts',[PostsController::class,'getAllData']); //posts
-            Route::get('post/{id}',[PostsController::class,'getDataById']); //posts
+            Route::resource('posts',PostsController::class);
         });
 
+        // users
         Route::group(['namespace' => 'Users'], function () {
-            Route::get('users', [UsersController::class,'index']); // users
-            Route::get('user/{id}', [UsersController::class,'getById']); //pos get user by id
+            Route::resource('users', UsersController::class);
         });
-
 
 });

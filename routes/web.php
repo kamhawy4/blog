@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\UsersController;
+use App\Models\Posts;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,9 +17,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/sss', function () {
+Route::get('/test', function () {
 
-    return view('welcome');
+    $book = Posts::find(2);
+    $book->title = 'sssss';
+   $e =  $book->refresh();
+dd($e);
 });
 
 Route::get('/', function () {

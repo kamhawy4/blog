@@ -4,9 +4,18 @@ namespace App\Http\Controllers\Admin\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\Users\UsersServices;
 
 class UsersController extends Controller
 {
+
+    private $userService;
+
+    public function __construct(UsersServices $userService)
+    {
+      $this->userService = $userService;
+    }
+
     public function index()
     {
         $users = User::all();
@@ -17,6 +26,20 @@ class UsersController extends Controller
     public function create()
     {
         return view('users.create');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validate($request, [
+            'username' => 'required|unique:users|max:255',
+            'password' => 'required|min:6',
+        ]);
+        $username = $request->input('username');
+        $password = $request->input('password');
+
+        $this->userService->register($username, $password);
+
+        return response()->json(['message' => 'User registered successfully']);
     }
 
     public function store()
