@@ -5,6 +5,8 @@ namespace App\Repository\Eloquent;
 use App\Repository\EloquentRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use mysql_xdevapi\Collection;
+use \Exception;
+
 
 class BaseRepository implements EloquentRepositoryInterface
 {
@@ -44,7 +46,7 @@ class BaseRepository implements EloquentRepositoryInterface
         return $user->update($attributes);
     }
 
-    public function delete(String $id) : Model
+    public function delete(String $id)
     {
         $user = $this->model->find($id);
         return $user->delete();

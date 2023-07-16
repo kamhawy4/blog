@@ -27,7 +27,7 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-         $this->userService->register($request->all());
+        $this->userService->register($request->all());
         return response()->json(['message' => 'User registered successfully']);
     }
 

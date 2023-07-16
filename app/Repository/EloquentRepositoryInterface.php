@@ -14,5 +14,5 @@ interface EloquentRepositoryInterface{
 
     public function update(String $id, Array $attributes) : Model;
 
-    public function delete(String $id) : Model;
+    public function delete(String $id);
 }

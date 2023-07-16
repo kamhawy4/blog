@@ -14,29 +14,33 @@ class PostsController extends Controller {
         $this->postsRepository = $postsRepository;
     }
 
-    public function getAllData()
+    public function index()
     {
-       return  $this->postsRepository->all();
+       return  $this->postsRepository->index();
     }
 
-    public function getDataById($id)
+    public function show($id)
     {
         return  $this->postsRepository->find($id);
     }
 
-    public function insertData($data)
+    public function store($data)
     {
-        return  $this->postsRepository->create($data->all());
+        $this->postsRepository->store($data->all());
+        return response()->json(['message' => 'Insert successfully']);
     }
 
-    public function updateDataById($id,$data)
+    public function update(String $id,$data)
     {
-        return  $this->postsRepository->update($id,$data);
+        dd($id);
+        $this->postsRepository->update($id,$data->all());
+        return response()->json(['message' => 'Update successfully']);
     }
 
-    public function deleteDataById($id)
+    public function destroy($id)
     {
-        return  $this->postsRepository->delete($id);
+        $this->postsRepository->delete($id);
+        return response()->json(['message' => 'Delete successfully']);
     }
 
 }
